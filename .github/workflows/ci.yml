@@ -7,22 +7,19 @@ on:
   pull_request:
 
 jobs:
-  test-job:
-    name: Test job
+  build-job:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar o código
-        uses: actions/checkout@v4
+      - name: Exibir usuário
+        run: echo "Olá, ${{ github.actor }}!"
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+  test-job:
+    name: Test job
+    needs: build-job
+    runs-on: ubuntu-latest
 
+    steps:
       - name: Executar teste
         run: echo "This job tests something"
-
-    test-job2:
-      name: test job 2
-      run: echo "algum comentario"

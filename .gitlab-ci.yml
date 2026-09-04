@@ -4,3 +4,6 @@ test-job:
     stage: test
     script:
         - echo "This job tests something"
+    stage: build
+    script: 
+      - echo "Olá, $GITLAB_USER_LOGIN!"
