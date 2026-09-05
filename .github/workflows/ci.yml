@@ -23,3 +23,21 @@ jobs:
     steps:
       - name: Executar teste
         run: echo "This job tests something"
+
+  deploy-prod-job:
+    name: Deploy em produção
+    needs: test-job
+    runs-on: ubuntu-latest
+    # Configure Required reviewers no Environment "production" para a aprovação manual.
+    environment:
+      name: production
+
+    steps:
+      - name: Exibir branch a implantar
+        run: echo "Implantando a branch ${{ github.ref_name }} em produção..."
+
+      - name: Simular implantação
+        run: sleep 20
+
+      - name: Confirmar sucesso
+        run: echo "Implantação concluída com sucesso!"
